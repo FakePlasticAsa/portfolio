@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import DesktopIcon from "./DesktopIcon";
 import Window from "./Window";
+import LanguageSwitcher from "./LanguageSwitch";
 
 const apps = [
   { id: "about", label: "About" },
@@ -12,6 +14,7 @@ const apps = [
 export default function Desktop() {
 // en Desktop.tsx
 const [openAppId, setOpenAppId] = useState<string | null>(null);
+const { t } = useTranslation();
 
 const openApp = openAppId ? apps.find(a => a.id === openAppId) : null;
 const handleOpen = (id: string) => {
@@ -23,10 +26,11 @@ const handleClose = () => {
 };
   return (
     <div style={{ width: "100%", height: "100%", padding: 16, position: "relative", backgroundImage: "url('/japan-wallpaper.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+      <LanguageSwitcher />
       {apps.map(app => (
         <DesktopIcon
           key={app.id}
-          label={app.label}
+          label={t(`apps.${app.id}`)}
           onOpen={() => handleOpen(app.id)}
         />
       ))}
@@ -34,10 +38,10 @@ const handleClose = () => {
 {openApp && (
   <Window
     key={openApp.id}
-    title={openApp.label}
+    title={t(`apps.${openApp.id}`)}
     onClose={handleClose}
   >
-    <p>Contenido de {openApp.label}</p>
+    <p>{t("ui.contentOf", { label: t(`apps.${openApp.id}`) })}</p>
   </Window>
 )}
 
