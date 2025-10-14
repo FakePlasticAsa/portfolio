@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import DesktopIcon from "./DesktopIcon";
 import Window from "./Window";
-import LanguageSwitcher from "./LanguageSwitch";
+import Taskbar from "./Taskbar";
 
 const apps = [
   { id: "about", label: "About" },
@@ -25,8 +25,9 @@ const handleClose = () => {
   setOpenAppId(null); // cierra la actual
 };
   return (
-    <div style={{ width: "100%", height: "100%", padding: 16, position: "relative", backgroundImage: "url('/japan-wallpaper.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
-      <LanguageSwitcher />
+    <div  
+    style={{ width: "100%", height: "100%", position: "relative", backgroundImage: "url('/japan-wallpaper.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+      <Taskbar />
       {apps.map(app => (
         <DesktopIcon
           key={app.id}
