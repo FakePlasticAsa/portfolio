@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import DesktopIcon from "./DesktopIcon";
 import Window from "./Window";
+import ContentRenderer, { type ContentBlock } from "./ContentRenderer";
 import Taskbar from "./Taskbar";
 
 const apps = [
@@ -9,6 +10,7 @@ const apps = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Personal Projects" },
   { id: "contact", label: "Contact" },
+  { id: "education", label: "Education" },
 ];
 
 export default function Desktop() {
@@ -42,7 +44,7 @@ const handleClose = () => {
     title={t(`apps.${openApp.id}`)}
     onClose={handleClose}
   >
-    <p>{t("ui.contentOf", { label: t(`apps.${openApp.id}`) })}</p>
+    <ContentRenderer blocks={t(`pages.${openApp.id}`, { returnObjects: true }) as unknown as ContentBlock[]} />
   </Window>
 )}
 

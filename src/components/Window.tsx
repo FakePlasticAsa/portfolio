@@ -1,10 +1,10 @@
 // src/components/Window.tsx
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 
 type WindowProps = {
-    title: string;
-    children?: React.ReactNode;
-    onClose: () => void;
+    readonly title: string;
+    readonly children?: ReactNode;
+    readonly onClose: () => void;
 };
 
 export default function Window({ title, children, onClose }: WindowProps) {
@@ -37,12 +37,12 @@ export default function Window({ title, children, onClose }: WindowProps) {
 
     return (
         <div
-        style={{ top: position.y, left: position.x }}
+        style={{ top: position.y, left: position.x, width: 800, height: 700 }}
 
             className="
           absolute 
-          w-[400px] h-[300px] 
-          bg-white border-black rounded-lg 
+          bg-white   rounded-lg 
+          flex flex-col overflow-hidden
           text-black 
         "
         >
@@ -51,7 +51,7 @@ export default function Window({ title, children, onClose }: WindowProps) {
   onPointerDown={handlePointerDown}
   onPointerMove={handlePointerMove}
   onPointerUp={handlePointerUp}
-  className="flex items-center border-b border-indigo-600 bg-indigo-500 rounded-t-lg"
+  className="relative flex items-center border-b border-indigo-600 bg-indigo-500 rounded-t-lg"
   style={{ cursor: "grab", userSelect: "none" }}
 >
   {}
@@ -72,7 +72,7 @@ export default function Window({ title, children, onClose }: WindowProps) {
 </div>
 
             {}
-            <div className="p-2">{children}</div>
+            <div className="flex-1 min-h-0 p-2 overflow-auto">{children}</div>
         </div>
     );
 }
