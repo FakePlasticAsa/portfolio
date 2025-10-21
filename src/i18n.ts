@@ -30,7 +30,7 @@ const resources = {
           { type: "img", src: "/street-wallpaper.png", alt: "Street wallpaper" }
         ],
         contact: [
-          { type: "p", text: "Feel free to reach out via social links in the taskbar or footer." }
+          { type: "p", text: "https://www.linkedin.com/in/sergi-beltran-bejar/" }
         ],
         education: [
           { type: "p", text: "Education with React, TypeScript, Tailwind, and i18n.", className: "text-base font-semibold text-xl" },
